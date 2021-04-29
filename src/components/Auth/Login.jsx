@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, TextField, Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
+import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -8,6 +9,7 @@ const Login = (props) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [alertStatus, setAlertStatus] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
+  const [successRedirect, setSuccessRedirect] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +29,8 @@ const Login = (props) => {
         setSnackbarOpen(true);
         setAlertStatus(data.status);
         setAlertMessage(data.message);
-        props.updateToken(data.sessionToken)
+        props.updateToken(data.sessionToken);
+        setSuccessRedirect("/");
       })
   };
 
@@ -47,6 +50,10 @@ const Login = (props) => {
       <div>Alert!</div>
     );
   };
+
+  if (successRedirect){
+    return <Redirect to={successRedirect}/>
+  }
 
   return (
     <div>
