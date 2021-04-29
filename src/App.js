@@ -2,34 +2,37 @@ import { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
+import Home from './components/Home';
 import NavBar from "./components/NavBar";
 
 function App() {
-  const [sessionToken, setSessionToken] = useState(null);
+  const [token, setToken] = useState(null);
 
   useEffect(()=>{
-    if (localStorage.getItem('sessionToken')){
-      setSessionToken(localStorage.getItem('sessionToken'))
+    if (localStorage.getItem('token')){
+      setToken(localStorage.getItem('token'))
     }
   }, [])
 
   const updateToken = (newToken) => {
-    localStorage.setItem('sessionToken', newToken);
-    setSessionToken(newToken);
+    localStorage.setItem('token', newToken);
+    setToken(newToken);
   }
 
   const clearToken = () => {
     localStorage.clear();
-    setSessionToken(null);
+    setToken(null);
   }
 
   return (
+    
     <div>
       <Router>
-        <NavBar clearToken={clearToken} />
+        <NavBar token={token} clearToken={clearToken} />
           <Switch>
-            <Route exact path='/signup' render={()=>(<Signup updateToken={updateToken} />)}></Route>
-            <Route exact path='/login' render={()=>(<Login updateToken={updateToken} />)}></Route>
+            <Route exact path='/' render={()=>(<Home />)} />
+            <Route exact path='/signup' render={()=>(<Signup updateToken={updateToken} />)} />
+            <Route exact path='/login' render={()=>(<Login updateToken={updateToken} />)} />
           </Switch>
       </Router>
     </div>
