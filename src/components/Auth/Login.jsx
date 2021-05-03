@@ -29,9 +29,14 @@ const Login = (props) => {
         setSnackbarOpen(true);
         setAlertStatus(data.status);
         setAlertMessage(data.message);
-        props.updateToken(data.sessionToken);
-        setSuccessRedirect("/");
-      })
+        if (data.status === "success") {
+          props.updateToken(data.sessionToken);
+          props.updateRole(data.user.role);
+          setSuccessRedirect("/");
+        } else {
+          console.log("Failed To Login!");
+        }
+      });
   };
 
   const snackbarClose = (e, reason) => {
@@ -51,8 +56,8 @@ const Login = (props) => {
     );
   };
 
-  if (successRedirect){
-    return <Redirect to={successRedirect}/>
+  if (successRedirect) {
+    return <Redirect to={successRedirect} />;
   }
 
   return (
@@ -85,4 +90,4 @@ const Login = (props) => {
   );
 };
 
-export default Login
+export default Login;

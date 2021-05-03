@@ -33,8 +33,12 @@ const Signup = (props) => {
           setSnackbarOpen(true);
           setAlertStatus(data.status);
           setAlertMessage(data.message);
-          props.updateToken(data.sessionToken);
-          setSuccessRedirect("/");
+          if (data.status === 'success') {
+            props.updateToken(data.sessionToken);
+            setSuccessRedirect("/");
+          } else {
+            console.log('Failed to Sign Up!')
+          }
         });
     } else {
       console.log("ERROR: Password Does Not Match!");

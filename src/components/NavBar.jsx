@@ -26,7 +26,6 @@ const NavBar = (props) => {
             <Button>Home</Button>
           </Link>
           {handleAuth()}
-          {/* <Auth /> */}
           <Button onClick={props.clearToken}>Log Out</Button>
         </Toolbar>
       </AppBar>
