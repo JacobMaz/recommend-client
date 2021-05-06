@@ -3,17 +3,16 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import ByCuisineIndex from "./components/Food/ByCuisineIndex";
+import UserLikesIndex from "./components/Food/UserLikesIndex";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 
 function App() {
   const [token, setToken] = useState(null);
-  const [role, setRole] = useState(null)
 
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem('role')) {
-      setToken(localStorage.getItem("token"));
-      setRole(localStorage.getItem('role'))
+      setToken(localStorage.getItem("token"))
     }
   }, []);
 
@@ -24,7 +23,6 @@ function App() {
 
   const updateRole = (newRole) =>{
     localStorage.setItem('role', newRole);
-    setRole(newRole);
   }
 
   const clearToken = () => {
@@ -50,6 +48,7 @@ function App() {
               path="/login"
               render={() => <Login updateToken={updateToken} updateRole={updateRole} />}
             />
+            <Route exact path="/userlikes" render={() => <UserLikesIndex token={token} />} />
           </div>
         </Switch>
       </Router>

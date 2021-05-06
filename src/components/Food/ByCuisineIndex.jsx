@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ByCuisine from "./ByCuisine"
 import ByCuisineDisplay from "./ByCuisineDisplay";
 
@@ -17,12 +17,7 @@ const ByCuisineIndex =(props)=>{
             setResults(data)
         })
         .catch(error => console.log(error));
-        console.log('searchFoodByCuisine: ', results)
     }
-
-    useEffect(()=>{
-        console.log('useEffect results: ', results)
-    })
 
     const handleDisplay =()=>{
         return results === null ? <ByCuisine searchFoodByCuisine={searchFoodByCuisine} setCuisine={setCuisine} /> : <ByCuisineDisplay results={results} token={props.token} />

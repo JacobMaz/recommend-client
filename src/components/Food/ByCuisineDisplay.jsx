@@ -1,8 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Modal } from "@material-ui/core";
+import StarIcon from "@material-ui/icons/Star";
 import { useState } from "react";
-import AddLikeFood from './AddLikeFood'
+import AddLikeFood from "./AddLikeFood";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,15 +22,14 @@ const ByCuisineDisplay = (props) => {
   const [activeRestaurant, setActiveRestraurant] = useState(null);
   const [open, setOpen] = React.useState(false);
 
-  console.log("DISPLAY: ", foodByCuisine);
-
   const displayFoodByCuisine = () => {
     if (foodByCuisine.length > 0) {
       return foodByCuisine.map((restaurant, index) => (
         <div key={index}>
           <h1>{restaurant.name}</h1>
+          <div>{addLikeDisplay(restaurant)}</div>
           <div>
-            {addLikeDisplay(restaurant)}
+            <p>Total Like: {restaurant.likes.length}</p>
           </div>
         </div>
       ));
@@ -49,39 +49,47 @@ const ByCuisineDisplay = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-
+ 
   const addLikeDisplay =(restaurant)=> {
-    if (localStorage.getItem('role') === 'user' || localStorage.getItem('role') === 'admin') {
-      return <Button onClick={()=> {
-        setActiveRestraurant(restaurant);
-        handleOpen();
-    }}>Like</Button>
-    } else {
-      return null
-    }
-  }
-
-  const addLikeModal =()=>{
-    if(activeRestaurant !== null){
-        return <Modal open={open} onClose={handleClose} >
-            <div className={classes.paper}>
-                <h1>{activeRestaurant.name}</h1>
-                <AddLikeFood handleClose={handleClose} activeRestaurant={activeRestaurant} token={props.token} />
-            </div>
-        </Modal>
+      // console.log('restaurant!:', restaurant)
+      if (localStorage.getItem('role') === 'user' || localStorage.getItem('role') === 'admin') {
+        const activeUserLikes = restaurant.likes.find(({userId})=> JSON.stringify(userId) === localStorage.getItem('userId'));
+        return restaurant.likes.length > 0 && activeUserLikes ?
+          <StarIcon /> :
+            <Button onClick={()=> {
+              setActiveRestraurant(restaurant);
+              handleOpen();
+            }}>Like</Button>
       } else {
-          return
+        return null
       }
-  }
+    }
 
-  return <div>
-      <div>
-          {displayFoodByCuisine()}
-      </div>
-      <div>
-          {addLikeModal()}
-      </div>
-  </div>;
+  const addLikeModal = () => {
+    if (activeRestaurant !== null) {
+      return (
+        <Modal open={open} onClose={handleClose}>
+          <div className={classes.paper}>
+            <h1>{activeRestaurant.name}</h1>
+            <AddLikeFood
+              handleClose={handleClose}
+              activeRestaurant={activeRestaurant}
+              token={props.token}
+            />
+          </div>
+        </Modal>
+      );
+    } else {
+      return;
+    }
+  };
+
+  return (
+    <div>
+      <div>{displayFoodByCuisine()}</div>
+      <div>{addLikeModal()}</div>
+    </div>
+  );
 };
 
 export default ByCuisineDisplay;

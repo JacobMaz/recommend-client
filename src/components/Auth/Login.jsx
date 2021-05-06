@@ -32,6 +32,8 @@ const Login = (props) => {
         if (data.status === "success") {
           props.updateToken(data.sessionToken);
           props.updateRole(data.user.role);
+          localStorage.setItem('username', data.user.username);
+          localStorage.setItem('userId', data.user.id)
           setSuccessRedirect("/");
         } else {
           console.log("Failed To Login!");
