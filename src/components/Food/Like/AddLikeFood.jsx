@@ -2,6 +2,15 @@
 import { Button} from "@material-ui/core";
 
 const AddLikeFood =(props)=>{
+    
+    const handleLikeSuccess =(e)=>{
+        if (props.searchFoodByCuisine){
+            props.searchFoodByCuisine(e)
+        }
+        if(props.searchFoodByName){
+            props.searchFoodByName(e)
+        }
+    }
 
     const handleLike =(e)=>{
         e.preventDefault();
@@ -20,7 +29,7 @@ const AddLikeFood =(props)=>{
         .then((data)=>{
             console.log('Added Like: ', data)
             if (data.status === 'success'){
-                props.searchFoodByCuisine(e);
+                handleLikeSuccess(e);
                 props.handleClose();
             } else {
                 console.log(data.status)

@@ -6,6 +6,7 @@ import PasswordResetRequest from "./components/Auth/PasswordResetRequest";
 import ResetPassword from "./components/Auth/ResetPassword";
 import Signup from "./components/Auth/Signup";
 import ByCuisineIndex from "./components/Food/ByCuisineIndex";
+import ByNameIndex from "./components/Food/ByNameIndex";
 import UserLikesIndex from "./components/Food/UserLikesIndex";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
@@ -56,6 +57,7 @@ function App() {
             <Route exact path="/userlikes" render={() => <UserLikesIndex token={token} />} />
             <Route exact path='/passwordresetrequest' render={()=> <PasswordResetRequest />}/>
             <Route exact path='/resetpassword/:token' render={()=> <ResetPassword />}/>
+            <Route exact path='/foodByName' render={()=> <ByNameIndex token={token} />}/>
           </div>
         </Switch>
       </Router>

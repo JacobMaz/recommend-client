@@ -17,15 +17,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ByCuisineDisplay = (props) => {
+const ByNameDisplay = (props) => {
   const classes = useStyles();
-  const foodByCuisine = props.results.foodByCuisine;
+  const foodByName = props.results.foodByName;
   const [activeRestaurant, setActiveRestraurant] = useState(null);
   const [open, setOpen] = React.useState(false);
 
-  const displayFoodByCuisine = () => {
-    if (foodByCuisine.length > 0) {
-      return foodByCuisine.map((restaurant, index) => (
+  const displayFoodByName = () => {
+    if (foodByName.length > 0) {
+      return foodByName.map((restaurant, index) => (
         <div key={index}>
           <h1>{restaurant.name}</h1>
           <div>{addLikeDisplay(restaurant)}</div>
@@ -83,7 +83,7 @@ const ByCuisineDisplay = (props) => {
             <h1>{activeRestaurant.name}</h1>
             <AddLikeFood
               handleClose={handleClose}
-              searchFoodByCuisine={props.searchFoodByCuisine}
+              searchFoodByName={props.searchFoodByName}
               activeRestaurant={activeRestaurant}
               token={props.token}
             />
@@ -98,11 +98,11 @@ const ByCuisineDisplay = (props) => {
   return (
     <div>
       <div>
-        <Button onClick={()=>props.setResults(null)}>Search New Cuisine</Button>
+        <Button onClick={()=>props.setResults(null)}>Search New Name</Button>
       </div>
         {handleMyLikes()}
       <div>
-        {displayFoodByCuisine()}
+        {displayFoodByName()}
       </div>
       <div>
         {addLikeModal()}
@@ -111,4 +111,4 @@ const ByCuisineDisplay = (props) => {
   );
 };
 
-export default ByCuisineDisplay;
+export default ByNameDisplay;

@@ -16,6 +16,8 @@ const Home =(props)=>{
         <div>
             <h1>App Name</h1>
             <Link to='/foodByCuisine'>Search By Cuisine</Link>
+            <br />
+            <Link to='/foodByName'>Search By Name</Link>
             <br/>
             {isLoggedIn()}
         </div>
