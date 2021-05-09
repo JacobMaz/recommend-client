@@ -1,22 +1,24 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Button} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Auth from "./Auth/Auth";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  paper: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
 }));
 
 const NavBar = (props) => {
   const classes = useStyles();
-
-  const handleAuth =()=>{
-      return props.token === null ?
-        <Auth /> :
-            null
-  }
 
   return (
     <div className={classes.root}>
@@ -25,10 +27,12 @@ const NavBar = (props) => {
           <Link to="/">
             <Button>Home</Button>
           </Link>
-          {handleAuth()}
-          <Button onClick={props.clearToken}>Log Out</Button>
+          <div><Auth token={props.token} clearToken={props.clearToken} /></div>
+          {/* <Button onClick={()=>handleLogoutOpen()}>Log Out</Button> */}
         </Toolbar>
       </AppBar>
+      <div>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,16 @@ const DeleteLike =(props)=>{
                 'Content-Type': 'application/json',
                 Authorization: `${props.token}`
             })
-        }).then(result=>console.log(result.status))
+        }).then(res=> res.json())
+            .then((data)=>{
+                console.log('data.status', data.status)
+                if(data.status === 'success'){
+                    props.getUserLikes();
+                    props.handleDeleteClose();
+                } else {
+                    console.log(data.status)
+                }
+            })
             .catch(error=>console.log(error))
     }
 
@@ -21,4 +30,4 @@ const DeleteLike =(props)=>{
     )
 }
 
-export default DeleteLike   
+export default DeleteLike

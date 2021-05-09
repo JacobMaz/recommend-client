@@ -19,6 +19,12 @@ const AddLikeFood =(props)=>{
         .then((response) => response.json())
         .then((data)=>{
             console.log('Added Like: ', data)
+            if (data.status === 'success'){
+                props.searchFoodByCuisine(e);
+                props.handleClose();
+            } else {
+                console.log(data.status)
+            }
         })
         .catch(error => console.log(error));
     }

@@ -35,6 +35,9 @@ const Signup = (props) => {
           setAlertMessage(data.message);
           if (data.status === 'success') {
             props.updateToken(data.sessionToken);
+            props.updateRole(data.user.role);
+            localStorage.setItem('username', data.user.username);
+            localStorage.setItem('userId', data.user.id);
             setSuccessRedirect("/");
           } else {
             console.log('Failed to Sign Up!')

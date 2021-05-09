@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Auth/Login";
+import Logout from "./components/Auth/Logout";
+import PasswordResetRequest from "./components/Auth/PasswordResetRequest";
+import ResetPassword from "./components/Auth/ResetPassword";
 import Signup from "./components/Auth/Signup";
 import ByCuisineIndex from "./components/Food/ByCuisineIndex";
 import UserLikesIndex from "./components/Food/UserLikesIndex";
@@ -28,27 +31,31 @@ function App() {
   const clearToken = () => {
     localStorage.clear();
     setToken(null);
+    console.log('clearToken:', token)
   };
 
   return (
     <div>
       <Router>
-        <NavBar token={token} clearToken={clearToken} />
+        <NavBar token={token} />
         <Switch>
           <div>
-            <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/" render={() => <Home token={token}/>} />
             <Route exact path="/foodByCuisine" render={() => <ByCuisineIndex token={token} />} />
             <Route
               exact
               path="/signup"
-              render={() => <Signup updateToken={updateToken} />}
+              render={() => <Signup updateToken={updateToken} updateRole={updateRole} />}
             />
             <Route
               exact
               path="/login"
               render={() => <Login updateToken={updateToken} updateRole={updateRole} />}
             />
+            <Route exact path='/logout' render={()=><Logout clearToken={clearToken} />} />
             <Route exact path="/userlikes" render={() => <UserLikesIndex token={token} />} />
+            <Route exact path='/passwordresetrequest' render={()=> <PasswordResetRequest />}/>
+            <Route exact path='/resetpassword/:token' render={()=> <ResetPassword />}/>
           </div>
         </Switch>
       </Router>

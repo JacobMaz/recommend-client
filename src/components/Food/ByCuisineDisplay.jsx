@@ -4,6 +4,7 @@ import { Button, Modal } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
 import { useState } from "react";
 import AddLikeFood from "./AddLikeFood";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -65,6 +66,15 @@ const ByCuisineDisplay = (props) => {
       }
     }
 
+  const handleMyLikes =()=>{
+    return props.token === null ?
+      null
+        :
+        <div>
+          <Link to='/userlikes'>My Likes</Link>
+        </div>
+  }
+
   const addLikeModal = () => {
     if (activeRestaurant !== null) {
       return (
@@ -73,6 +83,7 @@ const ByCuisineDisplay = (props) => {
             <h1>{activeRestaurant.name}</h1>
             <AddLikeFood
               handleClose={handleClose}
+              searchFoodByCuisine={props.searchFoodByCuisine}
               activeRestaurant={activeRestaurant}
               token={props.token}
             />
@@ -86,8 +97,16 @@ const ByCuisineDisplay = (props) => {
 
   return (
     <div>
-      <div>{displayFoodByCuisine()}</div>
-      <div>{addLikeModal()}</div>
+      <div>
+        <Button onClick={()=>props.setResults(null)}>Search New Cuisine</Button>
+      </div>
+        {handleMyLikes()}
+      <div>
+        {displayFoodByCuisine()}
+      </div>
+      <div>
+        {addLikeModal()}
+      </div>
     </div>
   );
 };

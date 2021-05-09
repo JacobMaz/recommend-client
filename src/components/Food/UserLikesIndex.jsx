@@ -5,8 +5,8 @@ import UserLikesDisplay from "./UserLikesDisplay"
 const UserLikesIndex =(props)=>{
     const [activeUserLikes, setActiveUserLikes] = useState(null);
 
-    useEffect(()=>{
-            fetch('http://localhost:3003/like/userlikes', {
+    const getUserLikes =()=> {
+        fetch('http://localhost:3003/like/userlikes', {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json",
@@ -18,6 +18,10 @@ const UserLikesIndex =(props)=>{
                     setActiveUserLikes(data)
                 })
                     .catch((error)=>console.log(error))
+    }
+
+    useEffect(()=>{
+            getUserLikes()
     }, [])
 
     console.log('mmmmhhhmmmm', activeUserLikes)
@@ -27,7 +31,7 @@ const UserLikesIndex =(props)=>{
             return null
         } else {
             return activeUserLikes.userLikes.length > 0 ?
-                <UserLikesDisplay activeUserLikes={activeUserLikes} token={props.token} />
+                <UserLikesDisplay getUserLikes={getUserLikes} activeUserLikes={activeUserLikes} token={props.token} />
                     : <div>
                         <h1>NO USER LIKES</h1>
                     </div>
