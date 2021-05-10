@@ -19,6 +19,7 @@ const Home =(props)=>{
             <br />
             <Link to='/foodByName'>Search By Name</Link>
             <br/>
+            <Link to='/foodByCity'>Search By City</Link>
             {isLoggedIn()}
         </div>
     )

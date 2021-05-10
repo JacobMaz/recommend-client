@@ -5,6 +5,7 @@ import Logout from "./components/Auth/Logout";
 import PasswordResetRequest from "./components/Auth/PasswordResetRequest";
 import ResetPassword from "./components/Auth/ResetPassword";
 import Signup from "./components/Auth/Signup";
+import ByCityIndex from "./components/Food/ByCityIndex";
 import ByCuisineIndex from "./components/Food/ByCuisineIndex";
 import ByNameIndex from "./components/Food/ByNameIndex";
 import UserLikesIndex from "./components/Food/UserLikesIndex";
@@ -58,6 +59,7 @@ function App() {
             <Route exact path='/passwordresetrequest' render={()=> <PasswordResetRequest />}/>
             <Route exact path='/resetpassword/:token' render={()=> <ResetPassword />}/>
             <Route exact path='/foodByName' render={()=> <ByNameIndex token={token} />}/>
+            <Route exact path='/foodByCity' render={()=> <ByCityIndex token={token} />}/>
           </div>
         </Switch>
       </Router>

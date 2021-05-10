@@ -10,6 +10,9 @@ const AddLikeFood =(props)=>{
         if(props.searchFoodByName){
             props.searchFoodByName(e)
         }
+        if (props.searchFoodByCity){
+            props.searchFoodByCity(e)
+        }
     }
 
     const handleLike =(e)=>{

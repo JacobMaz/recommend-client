@@ -1,14 +1,14 @@
 import { useState } from "react";
-import ByName from "./ByName";
-import ByNameDisplay from "./ByNameDisplay";
+import ByCity from "./ByCity";
+import ByCityDisplay from "./ByCityDisplay";
 
-const ByNameIndex = (props) => {
-  const [name, setName] = useState(null);
+const ByCityIndex = (props) => {
+  const [city, setCity] = useState(null);
   const [results, setResults] = useState(null);
 
-  const searchFoodByName = (e) => {
+  const searchFoodByCity = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3003/food/name/${name}`, {
+    fetch(`http://localhost:3003/food/city/${city}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -17,16 +17,16 @@ const ByNameIndex = (props) => {
       })
       .catch((error) => console.log(error));
   };
-  console.log("NameResults:", results);
+  console.log("City Results:", results);
 
   const handleDisplay = () => {
     return results === null ? (
-      <ByName searchFoodByName={searchFoodByName} setName={setName} />
+      <ByCity searchFoodByCity={searchFoodByCity} setCity={setCity} />
     ) : (
-      <ByNameDisplay
+      <ByCityDisplay
         results={results}
         token={props.token}
-        searchFoodByName={searchFoodByName}
+        searchFoodByCity={searchFoodByCity}
         setResults={setResults}
       />
     );
@@ -35,4 +35,4 @@ const ByNameIndex = (props) => {
   return <div>{handleDisplay()}</div>;
 };
 
-export default ByNameIndex;
+export default ByCityIndex;
