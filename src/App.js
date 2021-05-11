@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import FollowingListIndex from "./components/Auth/FollowingListIndex";
 import Login from "./components/Auth/Login";
 import Logout from "./components/Auth/Logout";
 import PasswordResetRequest from "./components/Auth/PasswordResetRequest";
 import ResetPassword from "./components/Auth/ResetPassword";
 import Signup from "./components/Auth/Signup";
+import FollowIndex from "./components/Follow/FollowIndex";
 import ByCityIndex from "./components/Food/ByCityIndex";
 import ByCuisineIndex from "./components/Food/ByCuisineIndex";
 import ByNameIndex from "./components/Food/ByNameIndex";
@@ -60,6 +62,8 @@ function App() {
             <Route exact path='/resetpassword/:token' render={()=> <ResetPassword />}/>
             <Route exact path='/foodByName' render={()=> <ByNameIndex token={token} />}/>
             <Route exact path='/foodByCity' render={()=> <ByCityIndex token={token} />}/>
+            <Route exact path='/followsearch' render={()=> <FollowIndex token={token} />}/>
+            <Route exact path='/followinglist' render={()=> <FollowingListIndex token={token} />}/>
           </div>
         </Switch>
       </Router>

@@ -9,6 +9,8 @@ const Home =(props)=>{
                 :
                     <div>
                         <Link to='/userlikes'>User Food</Link>
+                        <br/>
+                        <Link to='/followsearch'>Search For User</Link>
                     </div>
     }
 

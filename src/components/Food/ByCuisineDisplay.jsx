@@ -52,7 +52,7 @@ const ByCuisineDisplay = (props) => {
   };
  
   const addLikeDisplay =(restaurant)=> {
-      // console.log('restaurant!:', restaurant)
+      console.log('restaurant!:', restaurant.likes.length)
       if (localStorage.getItem('role') === 'user' || localStorage.getItem('role') === 'admin') {
         const activeUserLikes = restaurant.likes.find(({userId})=> JSON.stringify(userId) === localStorage.getItem('userId'));
         return restaurant.likes.length > 0 && activeUserLikes ?
