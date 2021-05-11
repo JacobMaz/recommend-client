@@ -6,6 +6,7 @@ import Logout from "./components/Auth/Logout";
 import PasswordResetRequest from "./components/Auth/PasswordResetRequest";
 import ResetPassword from "./components/Auth/ResetPassword";
 import Signup from "./components/Auth/Signup";
+import UserProfileIndex from "./components/Auth/UserProfileIndex";
 import FollowIndex from "./components/Follow/FollowIndex";
 import ByCityIndex from "./components/Food/ByCityIndex";
 import ByCuisineIndex from "./components/Food/ByCuisineIndex";
@@ -64,6 +65,7 @@ function App() {
             <Route exact path='/foodByCity' render={()=> <ByCityIndex token={token} />}/>
             <Route exact path='/followsearch' render={()=> <FollowIndex token={token} />}/>
             <Route exact path='/followinglist' render={()=> <FollowingListIndex token={token} />}/>
+            <Route exact path='/userprofile' render={()=> <UserProfileIndex token={token} />}/>
           </div>
         </Switch>
       </Router>

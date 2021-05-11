@@ -56,12 +56,7 @@ const UserLikesDisplay = (props) => {
         <Modal open={deleteOpen} onClose={handleDeleteClose}>
           <div className={classes.paper}>
             <h1>Delete Like</h1>
-            <DeleteLike
-              getUserLikes={props.getUserLikes}
-              handleDeleteClose={handleDeleteClose}
-              userLikeToDelete={userLikeToDelete}
-              token={props.token}
-            />
+            <DeleteLike getUserLikes={props.getUserLikes} handleDeleteClose={handleDeleteClose} userLikeToDelete={userLikeToDelete} token={props.token} />
           </div>
         </Modal>
       );

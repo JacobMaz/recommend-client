@@ -26,6 +26,9 @@ const NavBar = (props) => {
         <Link to="/followinglist">
           <Button>Following</Button>
         </Link>
+        <Link to='/userprofile'>
+          <Button>Profile</Button>
+        </Link>
       </div>
     );
   };
