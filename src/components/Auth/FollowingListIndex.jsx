@@ -30,7 +30,7 @@ const FollowingListIndex = (props) => {
       return null;
     } else {
       return userFollowing.length > 0 ? (
-          <FollowingListDisplay userFollowing={userFollowing} />
+          <FollowingListDisplay userFollowing={userFollowing} getFollowing={getFollowing} token={props.token} />
       ) : (
         <div>
           <h1>No Users Followed </h1>
