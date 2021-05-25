@@ -1,0 +1,10 @@
+.appBody {
+    background-color: #f4fcfc;
+    height: 100%;
+    width: 100%;
+}
+
+.appContainer {
+    display: flex;
+        justify-content: center;
+}

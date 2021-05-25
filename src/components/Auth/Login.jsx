@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, TextField, Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -16,7 +16,7 @@ const Login = (props) => {
     fetch("http://localhost:3003/user/login", {
       method: "POST",
       body: JSON.stringify({
-        username: username,
+        username: username.toLocaleLowerCase().replace(/ /g,'_'),
         password: password,
       }),
       headers: new Headers({
@@ -29,9 +29,18 @@ const Login = (props) => {
         setSnackbarOpen(true);
         setAlertStatus(data.status);
         setAlertMessage(data.message);
-        props.updateToken(data.sessionToken);
-        setSuccessRedirect("/");
-      })
+        if (data.status === "success") {
+          props.updateToken(data.sessionToken);
+          props.updateRole(data.user.role);
+          localStorage.setItem('username', data.user.username);
+          localStorage.setItem('userId', data.user.id);
+          setSuccessRedirect("/");
+        } else {
+          setSnackbarOpen(true);
+          setAlertStatus('error');
+          setAlertMessage('Failed to Login!')
+        }
+      });
   };
 
   const snackbarClose = (e, reason) => {
@@ -51,8 +60,8 @@ const Login = (props) => {
     );
   };
 
-  if (successRedirect){
-    return <Redirect to={successRedirect}/>
+  if (successRedirect === '/') {
+    return <Redirect to={successRedirect} />
   }
 
   return (
@@ -74,6 +83,7 @@ const Login = (props) => {
         />
         <Button type="submit">Log In</Button>
       </form>
+      <Link to='/passwordresetrequest'>Forgot Password</Link>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={5000}
@@ -85,4 +95,4 @@ const Login = (props) => {
   );
 };
 
-export default Login
+export default Login;

@@ -1,0 +1,47 @@
+#navbar {
+    background-color: #75f6d8;
+    border-bottom: 2px solid #0b302d;
+    top: 0;
+    height: 60px;
+    display: flex;
+        justify-content: center;
+
+}
+
+#navHomeLogo {
+    height: 55px;
+    width: 55px;
+}
+
+.authDiv {
+    display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    position: relative;
+}
+
+#navTitle {
+    color: #0b302d;
+}
+
+#navTitleDiv{
+    display: flex;
+        justify-content: center;
+}
+
+.link {
+    text-decoration: none;
+}
+
+#profileIcon {
+    height: 40px;
+    width: 40px;
+    color: #0b302d;
+}
+
+.navCatDiv {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 100;
+}
