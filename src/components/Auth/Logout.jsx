@@ -11,6 +11,11 @@ const Logout =(props)=>{
 
     return (
         <div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <h3>Are you sure you want to log out?
             </h3>
             <Button onClick={()=>{

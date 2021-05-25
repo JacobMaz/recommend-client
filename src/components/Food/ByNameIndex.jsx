@@ -8,9 +8,14 @@ const ByNameIndex = (props) => {
 
   const searchFoodByName = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3003/food/name/${name}`, {
-      method: "GET",
-    })
+    fetch(
+      `http://localhost:3003/food/name/${name
+        .toLocaleLowerCase()
+        .replace(/ /g, "_")}`,
+      {
+        method: "GET",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setResults(data);
@@ -24,6 +29,7 @@ const ByNameIndex = (props) => {
       <ByName searchFoodByName={searchFoodByName} setName={setName} />
     ) : (
       <ByNameDisplay
+        handleString={props.handleString}
         results={results}
         token={props.token}
         searchFoodByName={searchFoodByName}

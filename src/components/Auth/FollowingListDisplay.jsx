@@ -25,7 +25,7 @@ const FollowingListDisplay = (props) => {
     } else {
       return props.userFollowing.map((user, index) => (
         <div key={index}>
-          <h2>{user.username}</h2>
+          <h2>{props.handleString(user.username)}</h2>
           <Button
             onClick={() => {
               setUserToUnfollow(user);
@@ -52,7 +52,7 @@ const FollowingListDisplay = (props) => {
       return (
         <Modal open={unfollowOpen} onClose={handleUnfollowClose}>
           <div className={classes.paper}>
-            <h1>Unfollow</h1>
+            <h1>Unfollow {props.handleString(userToUnfollow.username)}</h1>
             <Unfollow
               getFollowing={props.getFollowing}
               handleUnfollowClose={handleUnfollowClose}

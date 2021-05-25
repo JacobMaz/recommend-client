@@ -16,7 +16,7 @@ const Login = (props) => {
     fetch("http://localhost:3003/user/login", {
       method: "POST",
       body: JSON.stringify({
-        username: username,
+        username: username.toLocaleLowerCase().replace(/ /g,'_'),
         password: password,
       }),
       headers: new Headers({
@@ -36,7 +36,9 @@ const Login = (props) => {
           localStorage.setItem('userId', data.user.id);
           setSuccessRedirect("/");
         } else {
-          console.log("Failed To Login!");
+          setSnackbarOpen(true);
+          setAlertStatus('error');
+          setAlertMessage('Failed to Login!')
         }
       });
   };

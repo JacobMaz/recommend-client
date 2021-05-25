@@ -8,7 +8,7 @@ const ByCityIndex = (props) => {
 
   const searchFoodByCity = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3003/food/city/${city}`, {
+    fetch(`http://localhost:3003/food/city/${city.toLocaleLowerCase().replace(/ /g,'_')}`, {
       method: "GET",
     })
       .then((res) => res.json())

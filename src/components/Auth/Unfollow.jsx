@@ -28,7 +28,7 @@ const Unfollow =(props)=>{
 
     return (
         <div>
-            <Button onClick={()=>handleUnfollow()}>DELETE!</Button>
+            <Button onClick={()=>handleUnfollow()}>UNFOlLOW!</Button>
         </div>
     )
 }

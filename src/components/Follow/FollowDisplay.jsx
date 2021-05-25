@@ -27,7 +27,7 @@ const FollowDisplay = (props) => {
     if (userStuff !== null) {
       return (
         <div>
-          <h2>Username: {userStuff.username}</h2>
+          <h2>Username: {props.handleString(userStuff.username)}</h2>
           {followDisplay(userStuff)}
         </div>
       );
@@ -69,7 +69,7 @@ const FollowDisplay = (props) => {
       return (
         <Modal open={open} onClose={handleClose}>
           <div className={classes.paper}>
-            <h1>Follow {userStuff.username}?</h1>
+            <h1>Follow {props.handleString(userStuff.username)}?</h1>
             <AddFollow
               searchUsername={props.searchUsername}
               activeUser={activeUser}

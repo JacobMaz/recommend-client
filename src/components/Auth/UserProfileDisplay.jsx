@@ -5,7 +5,7 @@ const UserProfileDisplay = (props) => {
 
   return (
     <div>
-        <h3>Username: {userInfo.username}</h3>
+        <h3>Username: {props.handleString(userInfo.username)}</h3>
         <h3>Email: {userInfo.email}</h3>
     </div>
   );

@@ -8,7 +8,7 @@ const FollowIndex = (props) => {
 
   const searchUsername = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3003/user/username/${username}`, {
+    fetch(`http://localhost:3003/user/username/${username.toLocaleLowerCase().replace(/ /g,'_')}`, {
       method: "GET",
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const FollowIndex = (props) => {
     return results === null ? (
       <Follow searchUsername={searchUsername} setUsername={setUsername} />
     ) : 
-    <FollowDisplay results={results} setResults={setResults} username={username} token={props.token} searchUsername={searchUsername}/>
+    <FollowDisplay results={results} setResults={setResults} username={username} token={props.token} searchUsername={searchUsername} handleString={props.handleString}/>
   };
 
   return (

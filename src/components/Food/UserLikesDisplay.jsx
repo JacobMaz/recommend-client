@@ -28,7 +28,7 @@ const UserLikesDisplay = (props) => {
     } else {
       return userLikes.map((like, index) => (
         <div key={index}>
-          <h2>{like.food.name}</h2>
+          <h2>{props.handleString(like.food.name)}</h2>
           <Button
             onClick={() => {
               setUserLikeToDelete(like);
@@ -55,7 +55,7 @@ const UserLikesDisplay = (props) => {
       return (
         <Modal open={deleteOpen} onClose={handleDeleteClose}>
           <div className={classes.paper}>
-            <h1>Delete Like</h1>
+            <h1>Unlike {props.handleString(userLikeToDelete.food.name)}</h1>
             <DeleteLike getUserLikes={props.getUserLikes} handleDeleteClose={handleDeleteClose} userLikeToDelete={userLikeToDelete} token={props.token} />
           </div>
         </Modal>

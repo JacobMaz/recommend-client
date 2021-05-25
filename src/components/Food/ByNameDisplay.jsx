@@ -27,7 +27,7 @@ const ByNameDisplay = (props) => {
     if (foodByName.length > 0) {
       return foodByName.map((restaurant, index) => (
         <div key={index}>
-          <h1>{restaurant.name}</h1>
+          <h1>{props.handleString(restaurant.name)}</h1>
           <div>{addLikeDisplay(restaurant)}</div>
           <div>
             <p>Total Like: {restaurant.likes.length}</p>
@@ -56,11 +56,13 @@ const ByNameDisplay = (props) => {
       if (localStorage.getItem('role') === 'user' || localStorage.getItem('role') === 'admin') {
         const activeUserLikes = restaurant.likes.find(({userId})=> JSON.stringify(userId) === localStorage.getItem('userId'));
         return restaurant.likes.length > 0 && activeUserLikes ?
-          <StarIcon /> :
-            <Button onClick={()=> {
+          <div><StarIcon /></div>:
+            <div>
+              <Button onClick={()=> {
               setActiveRestraurant(restaurant);
               handleOpen();
             }}>Like</Button>
+            </div>
       } else {
         return null
       }
@@ -80,7 +82,7 @@ const ByNameDisplay = (props) => {
       return (
         <Modal open={open} onClose={handleClose}>
           <div className={classes.paper}>
-            <h1>{activeRestaurant.name}</h1>
+            <h1>{props.handleString(activeRestaurant.name)}</h1>
             <AddLikeFood
               handleClose={handleClose}
               searchFoodByName={props.searchFoodByName}

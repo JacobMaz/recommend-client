@@ -31,7 +31,7 @@ const UserLikesIndex =(props)=>{
             return null
         } else {
             return activeUserLikes.userLikes.length > 0 ?
-                <UserLikesDisplay getUserLikes={getUserLikes} activeUserLikes={activeUserLikes} token={props.token} />
+                <UserLikesDisplay getUserLikes={getUserLikes} activeUserLikes={activeUserLikes} token={props.token} handleString={props.handleString} />
                     : <div>
                         <h1>NO USER LIKES</h1>
                     </div>

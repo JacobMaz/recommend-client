@@ -27,7 +27,7 @@ const ByCityDisplay = (props) => {
     if (foodByCity.length > 0) {
       return foodByCity.map((restaurant, index) => (
         <div key={index}>
-          <h1>{restaurant.name}</h1>
+          <h1>{handleString(restaurant.name)}</h1>
           <div>{addLikeDisplay(restaurant)}</div>
           <div>
             <p>Total Like: {restaurant.likes.length}</p>
@@ -75,12 +75,20 @@ const ByCityDisplay = (props) => {
         </div>
   }
 
+  const handleString =(activeStr)=>{
+    const str = activeStr.split('_')
+    for(let i = 0; i < str.length; i++){
+      str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+    }
+    return str.join('_').replace(/_/g,' ')
+  }
+
   const addLikeModal = () => {
     if (activeRestaurant !== null) {
       return (
         <Modal open={open} onClose={handleClose}>
           <div className={classes.paper}>
-            <h1>{activeRestaurant.name}</h1>
+            <h1>{activeRestaurant.name.charAt(0).toUpperCase() + activeRestaurant.name.slice(1).replace(/_/g,' ')}</h1>
             <AddLikeFood
               handleClose={handleClose}
               searchFoodByCity={props.searchFoodByCity}

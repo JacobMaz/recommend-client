@@ -8,7 +8,7 @@ const ByCuisineIndex = (props) => {
 
   const searchFoodByCuisine = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3003/food/cuisine/${cuisine}`, {
+    fetch(`http://localhost:3003/food/cuisine/${cuisine.toLocaleLowerCase().replace(/ /g,'_')}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -26,6 +26,7 @@ const ByCuisineIndex = (props) => {
       />
     ) : (
       <ByCuisineDisplay
+        handleString={props.handleString}
         results={results}
         token={props.token}
         searchFoodByCuisine={searchFoodByCuisine}
